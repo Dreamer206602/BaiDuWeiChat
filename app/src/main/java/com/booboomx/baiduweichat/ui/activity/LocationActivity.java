@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.model.inner.GeoPoint;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.geocode.GeoCodeResult;
@@ -131,6 +133,17 @@ public class LocationActivity extends Activity implements AdapterView.OnItemClic
         tv_send = (TextView) findViewById(R.id.tv_send);
         bmapView = (MapView) findViewById(R.id.bmapView);
 
+        GeoPoint point =new GeoPoint((int)(30.283774*1e6), (int)(120.149287*1e6));
+//        设置经纬度，你所在地的经纬度，
+//        (int)(30.283774*1e6), (int)(120.149287*1e6)
+//        这是杭州市区经纬度，我的就冼世伟杭州了
+//        bmapView.setZoomControlsPosition();
+//        bmapView.getController().setCenter(point);
+
+
+//        LatLng cenpt = new LatLng(121.583075,38.880994);
+
+
         // 地图初始化
         mBaiduMap = bmapView.getMap();
         // 设置为普通矢量图地图
@@ -141,6 +154,21 @@ public class LocationActivity extends Activity implements AdapterView.OnItemClic
         MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
         mBaiduMap.setMapStatus(msu);
         mBaiduMap.setOnMapTouchListener(touchListener);
+
+
+        LatLng cenpt=new LatLng(32.04,118.78);
+        MapStatus mMapStatus = new MapStatus.Builder()
+                .target(cenpt)
+                .zoom(12)
+                .build();
+        MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+        mBaiduMap.setMapStatus(mMapStatusUpdate);
+
+
+
+
+
+
 
         // 初始化当前 MapView 中心屏幕坐标
         mCenterPoint = mBaiduMap.getMapStatus().targetScreen;
@@ -238,6 +266,8 @@ public class LocationActivity extends Activity implements AdapterView.OnItemClic
             if (location == null || bmapView == null) {
                 return;
             }
+
+
             MyLocationData locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())
                     .latitude(location.getLatitude())
@@ -247,8 +277,24 @@ public class LocationActivity extends Activity implements AdapterView.OnItemClic
             Double mLatitude = location.getLatitude();
             Double mLongitude = location.getLongitude();
 
+            Log.i("sssssss", "onReceiveLocation: "+location.getCity());
+
+            Log.i("sssssss", "onReceiveLocation: "+location.getLatitude());
+            Log.i("sssssss", "onReceiveLocation: "+location.getLongitude());
+
+
+
             LatLng currentLatLng = new LatLng(mLatitude, mLongitude);
             mLoactionLatLng = new LatLng(mLatitude, mLongitude);
+
+
+//            MapStatus mMapStatus = new MapStatus.Builder()
+//                .target(mLoactionLatLng)
+//                .zoom(12)
+//                .build();
+//        MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+//        mBaiduMap.setMapStatus(mMapStatusUpdate);
+
 
             // 是否第一次定位
             if (isFirstLoc) {
@@ -358,6 +404,10 @@ public class LocationActivity extends Activity implements AdapterView.OnItemClic
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
             return;
         }
+
+        Log.i("sssssss", "onGetReverseGeoCodeResult: latitude"+result.getLocation().latitude);
+        Log.i("sssssss", "onGetReverseGeoCodeResult: longitude"+result.getLocation().longitude);
+
         // 获取反向地理编码结果
         PoiInfo mCurrentInfo = new PoiInfo();
         mCurrentInfo.address = result.getAddress();
