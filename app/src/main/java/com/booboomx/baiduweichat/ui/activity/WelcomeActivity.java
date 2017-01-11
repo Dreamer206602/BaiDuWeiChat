@@ -1,4 +1,4 @@
-package com.booboomx.baiduweichat.ui;
+package com.booboomx.baiduweichat.ui.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.booboomx.baiduweichat.MainActivity;
 import com.booboomx.baiduweichat.R;
 
 public class WelcomeActivity extends AppCompatActivity {

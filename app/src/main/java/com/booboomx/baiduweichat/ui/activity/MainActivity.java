@@ -1,4 +1,4 @@
-package com.booboomx.baiduweichat;
+package com.booboomx.baiduweichat.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.booboomx.baiduweichat.ui.activity.LocationActivity;
+import com.booboomx.baiduweichat.Constant;
+import com.booboomx.baiduweichat.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(MainActivity.this, LocationActivity.class);
-                startActivityForResult(intent,Constant.REQUEST_CODE);
+                startActivityForResult(intent, Constant.REQUEST_CODE);
 
             }
         });

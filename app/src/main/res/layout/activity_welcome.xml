@@ -5,6 +5,6 @@
     android:id="@+id/activity_welcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.booboomx.baiduweichat.ui.WelcomeActivity">
+    tools:context="com.booboomx.baiduweichat.ui.activity.WelcomeActivity">
 
 </LinearLayout>

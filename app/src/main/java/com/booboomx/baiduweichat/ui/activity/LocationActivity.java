@@ -165,11 +165,6 @@ public class LocationActivity extends Activity implements AdapterView.OnItemClic
         mBaiduMap.setMapStatus(mMapStatusUpdate);
 
 
-
-
-
-
-
         // 初始化当前 MapView 中心屏幕坐标
         mCenterPoint = mBaiduMap.getMapStatus().targetScreen;
         mLoactionLatLng = mBaiduMap.getMapStatus().target;
@@ -243,8 +238,8 @@ public class LocationActivity extends Activity implements AdapterView.OnItemClic
                 LocationActivity.this.finish();
                 break;
             case R.id.fl_search:  //查找
-//                Intent search_intent = new Intent(LocationActivity.this, SearchPositionActivity.class);
-//                startActivityForResult(search_intent, REQUEST_CODE);
+                Intent search_intent = new Intent(LocationActivity.this, SearchPositionActivity.class);
+                startActivityForResult(search_intent, REQUEST_CODE);
                 break;
             case R.id.tv_send:  //发送
                 Intent intent = new Intent();
