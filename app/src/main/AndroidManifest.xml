@@ -35,12 +35,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.MainActivity">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
 
         </activity>
 
@@ -52,7 +46,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.LocationActivity" />
+        <activity android:name=".ui.activity.LocationActivity"
+            android:screenOrientation="portrait"
+            />
 
         <!-- value处填写您在百度地图平台申请的API_KEY -->
         <meta-data
@@ -65,7 +61,11 @@
         <!-- android:process=":remote"> -->
         <!-- </service> -->
 
-        <activity android:name=".ui.activity.SearchPositionActivity"></activity>
+
+        <activity android:name=".ui.activity.SearchPositionActivity"
+            android:screenOrientation="portrait"
+            />
+
     </application>
 
 </manifest>
