@@ -1,1 +1,4 @@
 /build
+proguard-rules.pro
+app.iml
+.gitignore
